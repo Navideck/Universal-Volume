@@ -1,0 +1,21 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:com.navideck.universal_volume////PointingToDeclaration/universal-volume/com.navideck.universal_volume/index.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume.Companion///PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/-companion/index.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume.Companion/instance/#/PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/-companion/instance.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume///PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/index.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume/UniversalVolume/#/PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/-universal-volume.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume/addVolumeChangeListener/#com.navideck.universal_volume.VolumeChangeListener/PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/add-volume-change-listener.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume/dispose/#/PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/dispose.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume/initialize/#android.content.Context/PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/initialize.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume/maxVolume/#/PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/max-volume.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume/minVolume/#/PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/min-volume.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume/removeVolumeChangeListener/#com.navideck.universal_volume.VolumeChangeListener/PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/remove-volume-change-listener.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume/setVolume/#kotlin.Int#kotlin.Boolean/PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/set-volume.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume/setVolumeToPercentage/#kotlin.Double#kotlin.Boolean/PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/set-volume-to-percentage.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume/volume/#/PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/volume.html
+$dokka.location:com.navideck.universal_volume/UniversalVolume/volumeInPercentage/#/PointingToDeclaration/universal-volume/com.navideck.universal_volume/-universal-volume/volume-in-percentage.html
+$dokka.location:com.navideck.universal_volume/VolumeChangeListener///PointingToDeclaration/universal-volume/com.navideck.universal_volume/-volume-change-listener/index.html
+$dokka.location:com.navideck.universal_volume/VolumeChangeListener/onChange/#kotlin.Int/PointingToDeclaration/universal-volume/com.navideck.universal_volume/-volume-change-listener/on-change.html
+com.navideck.universal_volume
+
