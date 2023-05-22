@@ -1,4 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.VolumeControl" parent="Theme.Material3.DayNight" />
-    <style name="Theme.VolumeControl" parent="Base.Theme.VolumeControl" />
+
+    <style name="Base.Theme.UniversalVolume" parent="Theme.Material3.DayNight" />
+
+    <style name="Theme.UniversalVolume" parent="Base.Theme.UniversalVolume" />
 </resources>

@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "VolumeControl"
+rootProject.name = "UniversalVolume"
 include ':app'
-include ':volume-control-sdk'
+include ':universal-volume'
