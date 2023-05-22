@@ -3,15 +3,14 @@
 To control volume in android as well as headUnits
 
 ## Setup 
-import library from github
 
-initialize once 
+Initialize once 
 
 ```kotlin
 val volumeControlSdk = VolumeControlSdk.instance
 ```
 
-get or set volume using
+Get/Set volume
 
 ```kotlin
 val currentVolume = volumeControlSdk.volume
@@ -23,6 +22,7 @@ volumeControlSdk.setVolume()
 Volume range can be different for devices, for example few devices have 0 - 15 volume range , few have 0 - 30, so we can use `volumeInPercentage` methods
 
 ```kotlin
+// get/set volume between 0 to 1
 val currentVolume = volumeControlSdk.volumeInPercentage
 volumeControlSdk.setVolumeInPercentage()
 ```
@@ -33,6 +33,12 @@ To listen for volume changes
 volumeControlSdk.setVolumeChangeListener { volume ->
     // Handle volume updates
 }
+```
+
+Dispose when done
+
+```kotlin
+volumeControlSdk.dispose()
 ```
 
 ## Note 
