@@ -43,15 +43,15 @@ class UniversalVolume {
     val volume: Int?
         get() {
             ensureInitialize()
-            return volumeManager.currentVolume()
+            return volumeManager.currentVolume
         }
 
     /// [volumeInPercentage] returns volume between 0 and 1 for all devices
     val volumeInPercentage: Double
         get() {
             ensureInitialize()
-            val currentVolume = volumeManager.currentVolume()
-            val maxVolume = volumeManager.maxVolume()
+            val currentVolume = volumeManager.currentVolume
+            val maxVolume = volumeManager.maxVolume
             if (maxVolume == null || currentVolume == null) return 0.0
             return (currentVolume / maxVolume.toDouble() * 10000) / 10000
         }
@@ -74,13 +74,13 @@ class UniversalVolume {
     val maxVolume: Int?
         get() {
             ensureInitialize()
-            return volumeManager.maxVolume()
+            return volumeManager.maxVolume
         }
 
     val minVolume: Int?
         get() {
             ensureInitialize()
-            return volumeManager.minVolume()
+            return volumeManager.minVolume
         }
 
     fun setVolumeChangeListener(listener: (Int) -> Unit) {

@@ -8,7 +8,7 @@ import android.os.IBinder
 import android.os.RemoteException
 import android.util.Log
 
-class  JanAudioManager(
+class JanAudioManager(
     context: Context,
     private val onConnectionUpdate: (isConnected: Boolean) -> Unit,
 ) {

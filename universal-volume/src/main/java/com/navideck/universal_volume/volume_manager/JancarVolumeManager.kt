@@ -1,6 +1,7 @@
 package com.navideck.universal_volume.volume_manager
 
 import android.content.Context
+import android.media.AudioManager
 import android.util.Log
 import com.navideck.universal_volume.VolumeInterface
 import com.navideck.universal_volume.helper.VolumeHelper
@@ -13,13 +14,14 @@ import java.io.InputStreamReader
 /// calling initialize() will connect to the JanCarService and set up the volume control system
 /// connectionUpdate is a callback that is called when the connection to the JanCarService is updated
 class JancarVolumeManager : VolumeInterface {
+    // MasterVolume (10) is equivalent of AudioManager.STREAM_MUSIC
+    private val audioStream = 10
     private var mMasterVolume: AudioParam? = null
     private var janAudioManager: JanAudioManager? = null
-    private val masterVolumeId = 10
     private val onConnectionUpdate = { isConnected: Boolean ->
         Log.e("JancarVolumeManager", "JanCarServiceConnected: $isConnected")
         mMasterVolume = if (isConnected) {
-            janAudioManager?.getParam(masterVolumeId)
+            janAudioManager?.getParam(audioStream)
         } else {
             null
         }
@@ -49,17 +51,14 @@ class JancarVolumeManager : VolumeInterface {
         }
     }
 
-    override fun currentVolume(): Int? {
-        return janAudioManager?.getCurrentValue(masterVolumeId)
-    }
+    override val currentVolume: Int?
+        get() = janAudioManager?.getCurrentValue(audioStream)
 
-    override fun maxVolume(): Int? {
-        return mMasterVolume?.mMax
-    }
+    override val maxVolume: Int?
+        get() = mMasterVolume?.mMax
 
-    override fun minVolume(): Int? {
-        return mMasterVolume?.mMin
-    }
+    override val minVolume: Int?
+        get() = mMasterVolume?.mMin
 
     override fun setVolumeChangeListener(listener: (Int) -> Unit) {
         //TODO: implement setVolumeChangeListener

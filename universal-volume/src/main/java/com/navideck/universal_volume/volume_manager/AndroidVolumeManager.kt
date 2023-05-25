@@ -14,11 +14,12 @@ class AndroidVolumeManager : VolumeInterface {
     private lateinit var audioManager: AudioManager
     private var context: Context? = null
     private var mVolumeChangeListener: ((Int) -> Unit)? = null
+    private val audioStream = AudioManager.STREAM_MUSIC
 
     private val mContentObserver = object : ContentObserver(Handler(Looper.getMainLooper())) {
         private var mLastDetectedVolume = 0
         override fun onChange(selfChange: Boolean) {
-            val currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
+            val currentVolume = audioManager.getStreamVolume(audioStream)
             if (currentVolume == mLastDetectedVolume) return
             mLastDetectedVolume = currentVolume
             mVolumeChangeListener?.invoke(currentVolume)
@@ -39,18 +40,18 @@ class AndroidVolumeManager : VolumeInterface {
     }
 
     override fun setVolume(volume: Int, showVolumeBar: Boolean) {
-        val initialVolume = this.currentVolume()
+        val initialVolume = this.currentVolume
         if (volume == initialVolume) return
         val volumeBarFlag = if (showVolumeBar) 1 else 0
 
         // First, try to set the volume using setStream
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, volumeBarFlag)
         // Check if volume changed
-        if (initialVolume != this.currentVolume()) return
+        if (initialVolume != this.currentVolume) return
 
         // Set volume using adjustStreamVolume
-        if (volume > this.currentVolume()) {
-            while (this.currentVolume() < volume) {
+        if (volume > this.currentVolume) {
+            while (this.currentVolume < volume) {
                 audioManager.adjustStreamVolume(
                     AudioManager.STREAM_MUSIC,
                     AudioManager.ADJUST_RAISE,
@@ -58,7 +59,7 @@ class AndroidVolumeManager : VolumeInterface {
                 )
             }
         } else {
-            while (this.currentVolume() > volume) {
+            while (this.currentVolume > volume) {
                 audioManager.adjustStreamVolume(
                     AudioManager.STREAM_MUSIC,
                     AudioManager.ADJUST_LOWER,
@@ -68,21 +69,18 @@ class AndroidVolumeManager : VolumeInterface {
         }
     }
 
-    override fun currentVolume(): Int {
-        return audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
-    }
+    override val currentVolume: Int
+        get() = audioManager.getStreamVolume(audioStream)
 
-    override fun maxVolume(): Int {
-        return audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
-    }
+    override val maxVolume: Int
+        get() = audioManager.getStreamMaxVolume(audioStream)
 
-    override fun minVolume(): Int? {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            audioManager.getStreamMinVolume(AudioManager.STREAM_MUSIC)
+    override val minVolume: Int?
+        get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            audioManager.getStreamMinVolume(audioStream)
         } else {
             null
         }
-    }
 
     override fun setVolumeChangeListener(listener: (Int) -> Unit) {
         //TODO: Use broadcast receiver instead of content observer
