@@ -1,6 +1,7 @@
 package com.navideck.universal_volume
 
 import android.content.Context
+import com.navideck.universal_volume.helper.VolumeChangeListener
 import com.navideck.universal_volume.volume_manager.AndroidVolumeManager
 import com.navideck.universal_volume.volume_manager.JancarVolumeManager
 import kotlin.math.roundToInt
@@ -12,6 +13,9 @@ import kotlin.math.roundToInt
 /// check isInitialized to make sure initialize function is called
 class UniversalVolume {
     private var isInitialized = false
+    private var isVolumeChangeListenerActive = false
+    private val volumeChangeListeners: MutableList<VolumeChangeListener> = ArrayList()
+
     private val volumeManager: VolumeInterface = if (JancarVolumeManager.isSupported()) {
         JancarVolumeManager()
     } else {
@@ -35,6 +39,9 @@ class UniversalVolume {
 
     fun dispose() {
         if (!isInitialized) return
+        volumeChangeListeners.forEach {
+            removeVolumeChangeListener(it)
+        }
         volumeManager.dispose()
         isInitialized = false
     }
@@ -83,15 +90,30 @@ class UniversalVolume {
             return volumeManager.minVolume
         }
 
-    fun setVolumeChangeListener(listener: (Int) -> Unit) {
+    fun addVolumeChangeListener(listener: VolumeChangeListener) {
         ensureInitialize()
-        //TODO: add capability to set multiple listeners
-        volumeManager.setVolumeChangeListener(listener)
+        volumeChangeListeners.add(listener)
+        if (!isVolumeChangeListenerActive) {
+            isVolumeChangeListenerActive = true
+            volumeManager.setVolumeChangeListener {
+                volumeChangeListeners.forEach { listener ->
+                    listener.onChange(it)
+                }
+            }
+        }
     }
 
+    fun removeVolumeChangeListener(listener: VolumeChangeListener) {
+        volumeChangeListeners.remove(listener)
+        if (volumeChangeListeners.isEmpty() && isVolumeChangeListenerActive) {
+            volumeManager.removeVolumeChangeListener()
+            isVolumeChangeListenerActive = false
+        }
+    }
 
     private fun ensureInitialize() {
         if (!isInitialized) throw Exception("VolumeControlSdk is not initialized, please call initialize() first")
     }
 
 }
+

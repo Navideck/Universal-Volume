@@ -32,10 +32,7 @@ class AndroidVolumeManager : VolumeInterface {
     }
 
     override fun dispose() {
-        if (mVolumeChangeListener != null) {
-            context?.applicationContext?.contentResolver?.unregisterContentObserver(mContentObserver)
-        }
-        mVolumeChangeListener = null
+        removeVolumeChangeListener()
         context = null
     }
 
@@ -90,6 +87,13 @@ class AndroidVolumeManager : VolumeInterface {
             mContentObserver,
         )
         mVolumeChangeListener = listener
+    }
+
+    override fun removeVolumeChangeListener() {
+        if (mVolumeChangeListener != null) {
+            context?.applicationContext?.contentResolver?.unregisterContentObserver(mContentObserver)
+            mVolumeChangeListener = null
+        }
     }
 
 }

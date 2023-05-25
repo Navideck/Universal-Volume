@@ -64,4 +64,9 @@ class JancarVolumeManager : VolumeInterface {
         //TODO: implement setVolumeChangeListener
     }
 
+    override fun removeVolumeChangeListener() {
+        //TODO: implement removeVolumeChangeListener
+    }
+
+
 }

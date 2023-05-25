@@ -3,10 +3,12 @@ package com.navideck.universalvolume_example
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Switch
 import android.widget.TextView
 import com.navideck.universal_volume.UniversalVolume
+import com.navideck.universal_volume.helper.VolumeChangeListener
 
 @SuppressLint("SetTextI18n", "UseSwitchCompatOrMaterialCode")
 class MainActivity : AppCompatActivity() {
@@ -29,9 +31,13 @@ class MainActivity : AppCompatActivity() {
 
         universalVolume = UniversalVolume.instance
         universalVolume.initialize(this)
-        universalVolume.setVolumeChangeListener {
-            updateCurrentVolumeText()
+        val volumeChangeListener = object : VolumeChangeListener {
+            override fun onChange(volume: Int) {
+                updateCurrentVolumeText()
+            }
         }
+        universalVolume.addVolumeChangeListener(volumeChangeListener)
+
 
         updateCurrentVolumeText()
         txtMaxVolume.text = "Max Volume : " + universalVolume.maxVolume.toString()

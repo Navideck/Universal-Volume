@@ -17,4 +17,6 @@ interface VolumeInterface {
     fun setVolume(volume: Int, showVolumeBar: Boolean = false)
 
     fun setVolumeChangeListener(listener: (Int) -> Unit)
+
+    fun removeVolumeChangeListener()
 }
