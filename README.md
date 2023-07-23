@@ -1,59 +1,90 @@
 # Universal Volume
 
-To control volume in android as well as headUnits
+Universal Volume is a powerful Android library that facilitates volume control for Android devices and head units. It simplifies the process of managing volume levels across different devices and provides a straightforward API to interact with the AudioManager's STREAM_MUSIC.
 
-## Setup
+## Installation
 
-Initialize once
+To include Universal Volume in your Android project, you can add the following dependency in your app's `build.gradle` file:
+
+```gradle
+implementation 'com.navideck:universal-volume:1.0.0'
+```
+
+## Usage
+
+### Initialization
+
+Initialize the Universal Volume library once in your application:
 
 ```kotlin
 val universalVolume = UniversalVolume.instance
 ```
 
-Get/Set volume
+### Get/Set Volume
+
+You can retrieve and adjust volume levels using the following methods:
 
 ```kotlin
+// Get current volume
 val currentVolume = universalVolume.volume
+
+// Get maximum volume
 val maxVolume = universalVolume.maxVolume
+
+// Get minimum volume
 val minVolume = universalVolume.minVolume
-universalVolume.setVolume()
+
+// Set volume to a specific value
+universalVolume.setVolume(volume: Int)
 ```
 
-Volume range can be different for devices, for example few devices have 0 - 15 volume range , few
-have 0 - 30, so we can use `volumeInPercentage` methods
+### Handling Different Volume Ranges
+
+Some devices may have varying volume ranges, such as 0 to 15 or 0 to 30. To handle this, you can use the volume in percentage methods:
 
 ```kotlin
-// get/set volume between 0 to 1
-val currentVolume = universalVolume.volumeInPercentage
-universalVolume.setVolumeInPercentage()
+// Get volume between 0 to 1 as a float value
+val currentVolumePercentage = universalVolume.volumeInPercentage
+
+// Set volume between 0 to 1 as a float value
+universalVolume.setVolumeInPercentage(volumePercentage: Float)
 ```
 
-To listen for volume changes
+### Volume Change Listener
+
+You can set up a volume change listener to be notified when the volume changes:
 
 ```kotlin
-// setup a volumeChangeListener
+// Create a volume change listener
 val volumeChangeListener = object : VolumeChangeListener {
     override fun onChange(volume: Int) {
-        // handle volume changes
+        // Handle volume changes here
     }
 }
 
-// add listener
+// Add the listener
 universalVolume.addVolumeChangeListener(volumeChangeListener)
 
-// remove when not needed
+// Remove the listener when it's no longer needed
 universalVolume.removeVolumeChangeListener(volumeChangeListener)
-
 ```
 
-Dispose when done
+### Cleanup
+
+When you are done using the Universal Volume instance, remember to dispose of it properly:
 
 ```kotlin
 universalVolume.dispose()
 ```
 
-Checkout full documentation [here](https://navideck.github.io/Universal-Volume/)
+## Documentation
+
+For detailed usage instructions and additional information, please refer to the [full documentation](https://navideck.github.io/Universal-Volume/).
 
 ## Note
 
-this library handles just the `AudioManager.STREAM_MUSIC` controls currently
+Please note that the library currently handles volume controls specifically for `AudioManager.STREAM_MUSIC`.
+
+## Contribution
+
+Contributions to Universal Volume are welcome! If you encounter any issues or have suggestions for improvements, please submit an issue or pull request on the [GitHub repository](https://github.com/Navideck/Universal-Volume).
