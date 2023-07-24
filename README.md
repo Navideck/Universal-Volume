@@ -1,7 +1,23 @@
 # Universal Volume
 [![](https://jitpack.io/v/Navideck/Universal-Volume.svg)](https://jitpack.io/#Navideck/Universal-Volume)
 
-Universal Volume is a powerful Android library that facilitates volume control for Android devices and head units. It simplifies the process of managing volume levels across different devices and provides a straightforward API to interact with the AudioManager's STREAM_MUSIC.
+Universal Volume is a powerful Android library that facilitates volume control for common Android devices (phones and tablets) and exotic Android devices such as **car head units**.
+It simplifies the process of managing volume levels across different devices and provides a straightforward API to interact with the AudioManager's STREAM_MUSIC.
+
+## Features
+- Wide range of supported devices
+- Unified volume range
+- Background volume control
+
+### Supported devices
+- Generally available Android phones and tablets (e.g. Samsung, Xiaomi, Oppo etc.)
+- Jancar head units. Those device use non-standard volume APIs and come under multiple brands (e.g. Rimoody)
+
+### Unified volume range
+Some devices may have varying volume ranges, such as 0 to 15 or 0 to 30. Universal Volume makes this range consistent across devices.
+
+### Background volume control
+- Universal Volume works seamlessly when your app is in the background. Devices from Oppo, Vivo, and Realme require special workarounds to support background `STREAM_MUSIC` volume control. Universal Volume takes care of that.
 
 ## Installation
 
@@ -56,7 +72,7 @@ universalVolume.setVolume(volume: Int)
 
 ### Handling Different Volume Ranges
 
-Some devices may have varying volume ranges, such as 0 to 15 or 0 to 30. To handle this, you can use the volume in percentage methods:
+Some devices may have varying volume ranges, such as 0 to 15 or 0 to 30. To handle this, you can use the "volume percentage" methods:
 
 ```kotlin
 // Get volume between 0 to 1 as a float value
@@ -93,14 +109,15 @@ When you are done using the Universal Volume instance, remember to dispose of it
 universalVolume.dispose()
 ```
 
-## Documentation
-
-For detailed usage instructions and additional information, please refer to the [full documentation](https://navideck.github.io/Universal-Volume/).
-
 ## Note
 
 Please note that the library currently handles volume controls specifically for `AudioManager.STREAM_MUSIC`.
 
+## Documentation
+
+For detailed usage instructions and additional information, please refer to the [full documentation](https://navideck.github.io/Universal-Volume/).
+
 ## Contribution
 
-Contributions to Universal Volume are welcome! If you encounter any issues or have suggestions for improvements, please submit an issue or pull request on the [GitHub repository](https://github.com/Navideck/Universal-Volume).
+Contributions to Universal Volume are welcome! We would like to support more exotic Android devices that use proprietary volume APIs. We encourage pull requests that add support for such devices.
+If you encounter any issues or have suggestions for improvements, please submit an issue or pull request on the [GitHub repository](https://github.com/Navideck/Universal-Volume).
