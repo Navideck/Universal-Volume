@@ -1,13 +1,27 @@
 # Universal Volume
+[![](https://jitpack.io/v/Navideck/Universal-Volume.svg)](https://jitpack.io/#Navideck/Universal-Volume)
 
 Universal Volume is a powerful Android library that facilitates volume control for Android devices and head units. It simplifies the process of managing volume levels across different devices and provides a straightforward API to interact with the AudioManager's STREAM_MUSIC.
 
 ## Installation
 
-To include Universal Volume in your Android project, you can add the following dependency in your app's `build.gradle` file:
+To include Universal Volume in your Android project, add the JitPack repository to your root build.gradle at the end of repositories:
 
 ```gradle
-implementation 'com.navideck:universal-volume:1.0.0'
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+Add the dependency
+ 
+```gradle
+dependencies {
+    implementation 'com.github.Navideck:Universal-Volume:Tag'
+}
 ```
 
 ## Usage
@@ -18,6 +32,8 @@ Initialize the Universal Volume library once in your application:
 
 ```kotlin
 val universalVolume = UniversalVolume.instance
+
+universalVolume.initialize(context)
 ```
 
 ### Get/Set Volume
@@ -47,7 +63,7 @@ Some devices may have varying volume ranges, such as 0 to 15 or 0 to 30. To hand
 val currentVolumePercentage = universalVolume.volumeInPercentage
 
 // Set volume between 0 to 1 as a float value
-universalVolume.setVolumeInPercentage(volumePercentage: Float)
+universalVolume.setVolumeToPercentage(percentage: Double, showVolumeBar: Boolean)
 ```
 
 ### Volume Change Listener
