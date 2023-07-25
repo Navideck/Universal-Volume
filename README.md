@@ -21,22 +21,25 @@ Some devices may have varying volume ranges, such as 0 to 15 or 0 to 30. Univers
 
 ## Installation
 
-To include Universal Volume in your Android project, add the JitPack repository to your root build.gradle at the end of repositories:
+To include Universal Volume in your Android project, add the JitPack repository to your `settings.gradle` at the end of repositories:
 
 ```gradle
-allprojects {
+dependencyResolutionManagement {
+    ...
     repositories {
         ...
-        maven { url 'https://jitpack.io' }
+        maven { url 'https://jitpack.io' }  // Adding JitPack as dependencies source
     }
 }
 ```
 
-Add the dependency
+Add the dependency in your app's `build.gradle`:
  
 ```gradle
 dependencies {
-    implementation 'com.github.Navideck:Universal-Volume:Tag'
+    ...
+    implementation 'com.github.Navideck:Universal-Volume:v1.1.1'
+    ...
 }
 ```
 
