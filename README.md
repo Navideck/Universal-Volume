@@ -38,7 +38,7 @@ Add the dependency in your app's `build.gradle`:
 ```gradle
 dependencies {
     ...
-    implementation 'com.github.Navideck:Universal-Volume:v1.1.1'
+    implementation 'com.github.Navideck:Universal-Volume:v1.1.2'
     ...
 }
 ```
